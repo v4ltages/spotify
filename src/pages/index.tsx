@@ -1,0 +1,99 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @next/next/no-img-element */
+import type { NextPage } from "next";
+import Head from "next/head";
+import { useAppContext } from "../hooks/useContexts";
+
+const Home: NextPage = () => {
+    const lanyard = useAppContext()
+
+    if (!lanyard?.spotify) {
+        return (
+            <>
+                <Head>
+                    <title>
+                        There is nothing here for you :)
+                    </title>
+                </Head>
+                <div className="w-[100vw] h-[100vh] flex items-center justify-center text-white">
+                    Not listening to anything right now.
+                </div>
+            </>
+        );
+    };
+    
+    function fromMS(ms: number) {
+        const totalSeconds = ms / 1000;
+        const minutes = (~~(totalSeconds / 60)).toString();
+        const seconds = (~~(totalSeconds % 60)).toString();
+        return minutes + ":" + seconds.padStart(2, "0");
+    }
+
+    return (
+        <>
+            <Head>
+                <title>
+                    Listening to: {lanyard.spotify.song} by {lanyard.spotify.artist}{" "}
+                </title>
+                <meta name="theme-color" content="#1DB954" />
+                <meta name="og:title" content={`spotify.voltages.me`} />
+                <meta
+                    name="og:description"
+                    content={`Currently playing: ${
+                        lanyard.spotify.song ? lanyard.spotify.song + " by " + lanyard.spotify.artist : "Nothing"
+                    }`}
+                />
+                <meta name="og:image" content={lanyard.spotify.album_art_url} />
+            </Head>
+            <div className="absolute w-[100vw] h-[100vh] overflow-hidden opacity-80 z-[10] flex items-center justify-center">
+                <img
+                    className="w-[100vw] blur-2xl z-[10]"
+                    src={lanyard.spotify.album_art_url}
+                    alt="Album art but blurred"
+                />
+            </div>
+
+            <div className="absolute w-[100vw] h-[100vh] flex items-center justify-center text-white z-[20]">
+                <div className="p-8 w-[33rem] bg-[#000] bg-opacity-60 rounded-lg flex flex-col items-center justify-start font-karla">
+                    <div className="w-full flex flex-row items-center justify-start mb-6">
+                        <img
+                            src={lanyard.spotify.album_art_url}
+                            className="w-[8rem] h-[8rem] rounded-md"
+                            alt="Album Art"
+                        />
+                        <div className="ml-6 flex flex-col items-start justify-center">
+                            <a
+                                href={`https://open.spotify.com/track/${lanyard.spotify.track_id}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-xl text-white font-semibold"
+                            >
+                                {lanyard.spotify.song}
+                            </a>
+                            <h2 className="text-lg text-gray-300 font-normal">{lanyard.spotify.artist}</h2>
+                            <h3 className="text-lg text-gray-300 font-normal italic">in {lanyard.spotify.album}</h3>
+                        </div>
+                    </div>
+                    <div className="w-full h-[0.35rem] rounded-full bg-gray-700 mb-1">
+                        <div
+                            className="bg-[#65D46E] h-[0.35rem] rounded-full"
+                            style={{
+                                width: `${(
+                                    ((new Date().getTime() - lanyard.spotify.timestamps.start) /
+                                        (lanyard.spotify.timestamps.end - lanyard.spotify.timestamps.start)) *
+                                    100
+                                ).toString()}%`,
+                            }}
+                        />
+                    </div>
+                    <div className="w-full h-auto flex flex-row items-center justify-between text-base text-gray-400">
+                        <p>{fromMS(new Date().getTime() - lanyard.spotify.timestamps.start)}</p>
+                        <p>{fromMS(lanyard.spotify.timestamps.end - lanyard.spotify.timestamps.start)}</p>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default Home;
