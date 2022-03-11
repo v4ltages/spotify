@@ -3,7 +3,7 @@ Display's what ur currently playing on Spotify with Lanyard.
 
 This is something i decided to refactor for fun, need to solve a few things and perhaps make some improvements.
 
-![image](https://user-images.githubusercontent.com/37416491/157674997-3b56130d-7a1c-40ed-b6a2-431ec092d0a2.png)
+![image](https://user-images.githubusercontent.com/37416491/157850582-271da95d-75c4-4a30-94dc-64162247c412.png)
 
 ## Credits
 - Forked from [cnrad/s](https://github.com/cnrad/s).
