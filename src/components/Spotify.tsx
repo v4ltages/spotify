@@ -87,9 +87,9 @@ export const Spotify = () => {
                             <h3 className="text-lg text-gray-300 font-normal italic">in {lanyard.spotify.album}</h3>
                         </div>
                     </div>
-                    <div className="w-full h-[0.35rem] rounded-full bg-gray-700 mb-1">
+                    <div className="group w-full h-[0.35rem] rounded-full bg-gray-700 mb-1">
                         <div
-                            className="bg-[#65D46E] h-[0.35rem] rounded-full"
+                            className="bg-gray-300 group-hover:bg-[#65D46E] h-[0.35rem] rounded-full"
                             style={{
                                 width: `${(
                                     ((new Date().getTime() - lanyard.spotify.timestamps.start) /
