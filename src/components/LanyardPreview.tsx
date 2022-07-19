@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { useAppContext } from "../hooks/useContexts";
 
@@ -19,9 +20,9 @@ export const LanyardPreview = () => {
     }
     return (
     <>  
-        <a onClick={ () => setLanyardPreview(!openLanyardPreview)} className="hidden lg:block lg:absolute bottom-0 right-0 m-6 p-2 hover:bg-[#000] hover:bg-opacity-60 rounded-lg text-gray-300 hover:text-white transition-all cursor-pointer z-30">
+        <motion.a animate={{rotate: openLanyardPreview ? 180 : 0}} onClick={ () => setLanyardPreview(!openLanyardPreview)} className="hidden lg:block lg:absolute bottom-0 right-0 m-6 p-2 hover:bg-[#000] hover:bg-opacity-60 rounded-lg text-gray-300 hover:text-white cursor-pointer z-30">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>
-        </a>
+        </motion.a>
         {openLanyardPreview && <LanyardJSONPreview/>}
     </>
     );
@@ -47,9 +48,9 @@ const LanyardJSONPreview = () => {
         <p key="key-8">&quot;album&quot;: &quot;{lanyard.spotify.album}&quot;</p>,
     ];
     return (
-        <div className="hidden lg:block lg:absolute -translate-x-6 bottom-0 right-0 mb-20 p-2 w-64 bg-[#000] bg-opacity-60 rounded-lg text-gray-300 transition-all z-20 break-words">
+        <motion.div animate={{ opacity: [0, 100] }} className="hidden lg:block lg:absolute -translate-x-6 bottom-0 right-0 mb-20 p-2 w-64 bg-[#000] bg-opacity-60 rounded-lg text-gray-300 z-20 break-words">
             <a href="https://github.com/phineas/lanyard" className="text-lg pb-6 cursor-pointer">Lanyard provided data</a>
             <p>{SpotifyArray}</p>
-        </div>
+        </motion.div>
     )
 };
