@@ -71,7 +71,7 @@ export const Spotify = () => {
                     <div className="w-full flex flex-row items-center justify-start mb-6">
                         <img
                             src={lanyard.spotify.album_art_url}
-                            className="w-[8rem] h-[8rem] rounded-md"
+                            className="w-[8rem] h-[8rem]"
                             alt="Album Art"
                         />
                         <div className="ml-6 flex flex-col items-start justify-center">
