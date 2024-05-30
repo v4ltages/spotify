@@ -95,7 +95,7 @@ export const Spotify = () => {
                     </div>
                     <div className="group w-full h-[0.35rem] rounded-full bg-gray-700 mb-1">
                         <div
-                            className="bg-gray-300 group-hover:bg-[#65D46E] h-[0.35rem] rounded-full"
+                            className="bg-gray-300 group-hover:bg-[#65D46E] h-[0.35rem] rounded-full cursor-not-allowed"
                             style={{ width: `${(((currentTime - lanyard.spotify.timestamps.start) / (lanyard.spotify.timestamps.end - lanyard.spotify.timestamps.start)) * 100).toString()}%` }}
                         />
                     </div>
