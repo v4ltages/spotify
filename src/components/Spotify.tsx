@@ -1,10 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
+import { useState } from "react";
 import { useAppContext } from "../hooks/useContexts";
 import Head from "next/head";
 
 export const Spotify = () => {
     const lanyard = useAppContext()
+    let [currentTime, setCurrentTime] = useState(new Date().getTime())
+
+    setInterval(() => {
+        setCurrentTime(new Date().getTime());
+    }, 1000);
 
     if (!lanyard?.spotify) {
         if (lanyard?.discord_status == 'offline') {
@@ -56,12 +62,12 @@ export const Spotify = () => {
                         lanyard.spotify.song ? lanyard.spotify.song + " by " + lanyard.spotify.artist : "Nothing"
                     }`}
                 />
-                <meta name="og:image" content={lanyard.spotify.album_art_url} />
+                <meta name="og:image" content={lanyard.spotify.album_art_url!} />
             </Head>
             <div className="absolute w-[100vw] h-[100vh] overflow-hidden opacity-80 z-[10] flex items-center justify-center">
                 <img
                     className="w-[100vw] blur-2xl z-[10]"
-                    src={lanyard.spotify.album_art_url}
+                    src={lanyard.spotify.album_art_url!}
                     alt="Album art but blurred"
                 />
             </div>
@@ -70,7 +76,7 @@ export const Spotify = () => {
                 <div className="p-8 w-[33rem] bg-[#000] bg-opacity-60 rounded-lg flex flex-col items-center justify-start font-karla">
                     <div className="w-full flex flex-row items-center justify-start mb-6">
                         <img
-                            src={lanyard.spotify.album_art_url}
+                            src={lanyard.spotify.album_art_url!}
                             className="w-[8rem] h-[8rem]"
                             alt="Album Art"
                         />
@@ -90,17 +96,11 @@ export const Spotify = () => {
                     <div className="group w-full h-[0.35rem] rounded-full bg-gray-700 mb-1">
                         <div
                             className="bg-gray-300 group-hover:bg-[#65D46E] h-[0.35rem] rounded-full"
-                            style={{
-                                width: `${(
-                                    ((new Date().getTime() - lanyard.spotify.timestamps.start) /
-                                        (lanyard.spotify.timestamps.end - lanyard.spotify.timestamps.start)) *
-                                    100
-                                ).toString()}%`,
-                            }}
+                            style={{ width: `${(((currentTime - lanyard.spotify.timestamps.start) / (lanyard.spotify.timestamps.end - lanyard.spotify.timestamps.start)) * 100).toString()}%` }}
                         />
                     </div>
                     <div className="w-full h-auto flex flex-row items-center justify-between text-base text-gray-400">
-                        <p>{fromMS(new Date().getTime() - lanyard.spotify.timestamps.start)}</p>
+                        <p>{fromMS(currentTime - lanyard.spotify.timestamps.start)}</p>
                         <p>{fromMS(lanyard.spotify.timestamps.end - lanyard.spotify.timestamps.start)}</p>
                     </div>
                 </div>
