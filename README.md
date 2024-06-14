@@ -9,7 +9,7 @@
 ## Setup
 Clone the repository
 
-    Git clone https://github.com/v4ltages/spotify.git
+    git clone https://github.com/v4ltages/spotify.git
 
 Install dependencies
 
@@ -19,7 +19,7 @@ Run the next.js development environment
 
     npm run dev
 
-**You may have to register a API application on last.fm and your own API server for the song history to function!**
+**You may have to register a API application on last.fm and make your own API server for the song history to function!**
 
 ## Credits
 - Forked originally from [cnrad/s](https://github.com/cnrad/s).
