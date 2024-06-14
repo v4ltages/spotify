@@ -7,7 +7,7 @@ export const LastSongs = () => {
     const [errorStatus, setError] = useState(false);
 
     useEffect(() => {
-        fetch("https://findstorage.voltag.es:6969", { 
+        fetch("https://findstorage.voltag.es", { 
                 next: { revalidate: 120 }
             })
            .then((res) => res.json())
