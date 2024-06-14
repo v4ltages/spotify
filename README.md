@@ -6,6 +6,21 @@
 <img width="1440" alt="image" src="https://github.com/v4ltages/spotify/assets/37416491/b1e6881b-a840-4690-aeea-15093ec5e7cf">
 <sub>Taken 14th of June 2024.</sub>
 
+## Setup
+Clone the repository
+
+    Git clone https://github.com/v4ltages/spotify.git
+
+Install dependencies
+
+    npm install
+
+Run the next.js development environment
+
+    npm run dev
+
+**You may have to register a API application on last.fm and your own API server for the song history to function!**
+
 ## Credits
 - Forked originally from [cnrad/s](https://github.com/cnrad/s).
 - [Phineas/lanyard](https://github.com/Phineas/lanyard) for Lanyard.
